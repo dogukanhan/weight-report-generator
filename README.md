@@ -12,3 +12,6 @@ Then run
 python3 main.py
 
 * open report/<reportDate>/index.html in browser
+
+* Report in this repository /report/2025-07-30/ is live in this github page!
+https://dogukanhan.github.io/weight-report-generator/report/2025-07-30/index.html
