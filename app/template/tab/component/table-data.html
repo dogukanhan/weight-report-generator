@@ -1,0 +1,30 @@
+<table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Date</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Set</th>
+        <th scope="col">Repetition</th>
+        <th scope="col">Missing</th>
+        <th scope="col">RPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for index,row in type["data"].iterrows() %}
+      <tr>
+            <td scope="col">{{row["Id"]}}</td>
+            <td scope="col">{{row["Date"]}}</td>
+            <td scope="col">{{row["Weight"]}}</td>
+            <td scope="col">{{row["Set"]}}</td>
+            <td scope="col">{{row["Repetition"]}}</td>
+            <td scope="col">{{row["Missing"]}}</td>
+            <td scope="col">{{row["RPE"]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    let table = new DataTable('#myTable');
+</script>

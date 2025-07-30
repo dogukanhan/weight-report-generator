@@ -1,0 +1,48 @@
+<div class="alert alert-success" role="alert">
+
+    {% if type["oneRmData"] is not none  %}
+
+        {% if not type["oneRmDataRecent"]%}
+        <div class="alert alert-danger" role="alert">
+            Your 1RM calculation is expaired please do again in order to see results. 
+                Please do RPM 10, SET 1 and Repetitions < 12 workout to enable 1rm suggestions.
+        </div>
+        {% endif %}
+
+        According to your latest balancing workout :  </br></br>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Set</th>
+                <th scope="col">Repetition</th>
+                <th scope="col">Missing</th>
+                <th scope="col">RPE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{type["oneRmData"]["Date"]}}</td>
+                <td>{{type["oneRmData"]["Weight"]}}</td>
+                <td>{{type["oneRmData"]["Set"]}}</td>
+                <td>{{type["oneRmData"]["Repetition"]}}</td>
+                <td>{{type["oneRmData"]["Missing"]}}</td>
+                <td>{{type["oneRmData"]["RPE"]}}</td>
+              </tr>
+            </tbody>
+          </table>
+    
+        {% include 'tab/component/table-rm.html' %}
+          
+        <div class="alert alert-info" role="alert">
+           Due to the 1RM calculations offered training for maximum gain is 8 repetitions with the weight of {{type["rms"][8]}}
+        </div>
+
+        {{type["analysisChart"] | safe}}
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+      To enable 1RM suggestions, please do one set with the weight that you can't do more than 10 repetitions.
+     </div>
+    {% endif %}
+  </div>

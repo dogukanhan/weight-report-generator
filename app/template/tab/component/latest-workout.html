@@ -1,0 +1,65 @@
+<div class="alert alert-info" role="alert">
+    According to your latest workout :  </br></br>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Set</th>
+            <th scope="col">Repetition</th>
+            <th scope="col">Missing</th>
+            <th scope="col">RPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{type["lastRow"]["Date"]}}</td>
+            <td>{{type["lastRow"]["Weight"]}}</td>
+            <td>{{type["lastRow"]["Set"]}}</td>
+            <td>{{type["lastRow"]["Repetition"]}}</td>
+            <td>{{type["lastRow"]["Missing"]}}</td>
+            <td>{{type["lastRow"]["RPE"]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </br>
+
+    <div class="alert alert-success" role="alert">
+        {% if type["lastRow"]["Missing"] == 0 %}
+            {% if type["lastRow"]["RPE"] < 10 %}
+                You didn't miss any repetition, and RPE is lower than < 10. </br>
+                Suggestions:
+                <ul>
+                    <li>You can increase the weight to > {{ type["lastRow"]["Weight"] }}</li>
+                    <li>Decrease the weight slightly closer to < {{ type["lastRow"]["Weight"] }}, but increase the set to > {{ type["lastRow"]["Set"]}} </li>
+                    <li>Use the same weight and increase repetition such that repetition > {{ type["lastRow"]["Repetition"] }} </li>
+                </ul>
+            {% else %}
+                You didn't miss any repetition, but RPE is 10.</br>
+                Suggestions:
+                <ul>
+                    <li>Use the same weight, the same repetition, and the same set to train until RPE to decreases.</li>
+                    <li>Use the same weight and increase repetition such that repetition > {{ type["lastRow"]["Repetition"] }} </li>
+                    <li>Decrease the weight slightly closer to < {{ type["lastRow"]["Weight"] }} but increase the set to > {{ type["lastRow"]["Set"]}} </li>
+                </ul>
+            {% endif %}
+            {% elif type["lastRow"]["Set"] * type["lastRow"]["Repetition"] - type["lastRow"]["Missing"] >= type["lastRow"]["Set"] * type["lastRow"]["Repetition"] * 0.8 %}
+                You missed {{type["lastRow"]["Missing"]}} but the completed repetition are {{type["lastRow"]["Set"] * type["lastRow"]["Repetition"] - type["lastRow"]["Missing"] }} 
+                which is >=  {{type["lastRow"]["Set"] * type["lastRow"]["Repetition"] * 0.8}}  %80 of the total repetition {{type["lastRow"]["Set"] * type["lastRow"]["Repetition"]}}
+            </br>
+                Suggestions:
+                <ul>
+                    <li>Use the same weight, repetition and try to complete all repetition without missing.</li>
+                </ul>
+            </br>
+            {% else %}
+                You missed {{type["lastRow"]["Missing"]}}, but the completed repetitions are 
+                {{type["lastRow"]["Set"] * type["lastRow"]["Repetition"] - type["lastRow"]["Missing"] }},
+                which is <  {{type["lastRow"]["Set"] * type["lastRow"]["Repetition"] * 0.8}}  %80 of the total repetition {{type["lastRow"]["Set"] * type["lastRow"]["Repetition"]}}
+            </br>Suggestions:
+                <ul>
+                    <li>Reduce the weight.</li>
+                </ul>
+        {% endif %}
+      </div>
+</div>

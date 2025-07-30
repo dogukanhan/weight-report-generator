@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-center">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" aria-current="page" href="./index.html">General Report</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Activity</a>
+            <ul class="dropdown-menu">
+                {% for type in types %}
+                <li><a class="dropdown-item" href="./{{type.url}}.html">{{type.name}}</a></li>
+                {% endfor %}
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Training History</a>
+            <ul class="dropdown-menu">
+                {% for date in dates %}
+                <li><a class="dropdown-item" href="./{{date.url}}.html">{{date.name}}</a></li>
+                {% endfor %}
+            </ul>
+          </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" 
+          onclick="window.print()"
+            type="button" role="tab"
+             aria-selected="false">Print</button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Report Generation Date: {{date}}</a>
+        </li>
+      </ul>
+</nav>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Training Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container my-5 ">
+            <h1 class="text-center">{{type.name}}</h1>
+
+            <h4>Training Days</h4>
+            <div class="alert alert-warning" role="alert">
+              {{type["chartTrainingDays"] | safe}}
+            </div>
+
+            <h4>General</h4>
+            <div class="alert alert-primary" role="alert">
+              {% include 'tab/component/table-weight.html' %}
+            </div>
+
+            <h4>Analysis</h4>
+            {% include 'tab/component/latest-workout.html' %}
+            
+            <h4>1RM Suggestions</h4>
+            {% include 'tab/component/1rm.html' %}
+
+            <h4>Weight | Repetition and Date</h4>
+            <div class="alert alert-info" role="alert">
+                {{type["bumbleChart"] | safe}}
+            </div>
+
+            <h4>RPE by Date</h4>
+            <div class="alert alert-secondary" role="alert">
+              {{type["rpeChart"] | safe}}
+            </div>
+
+            <h4>Most Fail</h4>
+            <div class="alert alert-danger" role="alert">
+              {{type["failChart"] | safe}}
+            </div>
+
+            <h4>Records</h4>
+            <div class="alert alert-secondary" role="alert">
+              {% include 'tab/component/table-data.html' %}
+            </div>
+      </div>
+  </body>
+</html>
