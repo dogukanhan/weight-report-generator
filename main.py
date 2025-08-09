@@ -93,9 +93,12 @@ def generate_report():
   generate_index(env, df, now_str, dateList, typeList)
   generate_type_report(env, df, now_str, dateList, typeList)
   generate_date_report(env, now_str, dateList, typeList)
-
+  print("Report is created")
 
 
 print("Starting the analyzer program")
 
 generate_report()
+
+print("Program is finished.")
+print("Review report at: " + report_path + "/index.html")
