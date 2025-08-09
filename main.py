@@ -72,6 +72,7 @@ def generate_date_report(env, now_str, dateList, typeList):
 def generate_report():
   check_folders()
 
+  print("Reading traingg data")
   df = r.read_training_data()
   inialize_virtual_columns(df)
 
@@ -80,16 +81,21 @@ def generate_report():
       autoescape=select_autoescape()
   )
 
+  print("Starting analysis")
   types  = df['Type'].unique().tolist()
   dates  = df['Date'].unique().tolist()
   typeList = analyzer.analyze(df,types)
   dateList = analyzer.analyze_date(df, dates)
   now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+  print("Analysis completed")
 
+  print("Creating report")
   generate_index(env, df, now_str, dateList, typeList)
   generate_type_report(env, df, now_str, dateList, typeList)
   generate_date_report(env, now_str, dateList, typeList)
 
 
+
+print("Starting the analyzer program")
 
 generate_report()
